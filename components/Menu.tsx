@@ -6,7 +6,7 @@ interface HeroProps {
 
 function Menu({ open, setOpen }: HeroProps) {
   return (
-    <div className="bg-[#FF6542] min-h-screen w-full text-white px-6 md:px-12">
+    <div className="bg-[#FF6542] min-h-screen w-full text-white px-6 md:px-12 relative">
       {/* Navbar */}
       <div className="flex justify-between items-center py-6">
         <div className="w-16 h-16 md:w-20 md:h-20 p-2">
@@ -40,8 +40,8 @@ function Menu({ open, setOpen }: HeroProps) {
       </div>
 
       {/* Newsletter Section */}
-      <div className="mt-16">
-        <div className="flex flex-col text-center md:text-left">
+      <div className="mt-16 absolute bottom-0 left-0 right-0 px-4 sm:px-6 lg:px-8">
+        <div className="flex flex-col text-center md:text-left mx-auto">
           <p className="uppercase text-xs font-semibold">
             Signup for our ‘kin quarterly newsletter
           </p>

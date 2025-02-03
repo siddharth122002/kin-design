@@ -9,7 +9,6 @@ import { useEffect, useRef, useState } from "react";
 export default function Home() {
   const menuRef = useRef<HTMLDivElement | null>(null);
   const [open, setOpen] = useState<boolean>(false);
-  const totalImages = 7;
 
   const images = [
     "https://by-kin.com/_next/image?url=https%3A%2F%2Fcms.by-kin.com%2Fuploads%2F01_7f51214472.jpg&w=1920&q=100",
@@ -39,6 +38,10 @@ export default function Home() {
   useGSAP(
     () => {
       const tl = gsap.timeline();
+      tl.to(".loading", {
+        display: "none",
+        duration: 2,
+      });
       tl.to(
         ".opener1",
         {
@@ -145,7 +148,10 @@ export default function Home() {
             <Image src={images[6]} className=" object-cover" fill alt="test" />
           </div>
           <div className="opener1 absolute top-0 left-0 bg-[#F4F2ED] w-full h-full -translate-y-[50%]"></div>
-          <div className="opener2 absolute top-0 left-0 bg-[#F4F2ED] w-full h-full translate-y-[50%]"></div>
+          <div className="opener2 absolute top-0 left-0 bg-[#F4F2ED] w-full h-full translate-y-[49%]"></div>
+          <div className="loading flex justify-center items-center w-full h-screen absolute top-0 left-0 z-50 text-[#FF6542]">
+            Loading...
+          </div>
         </div>
 
         <div
