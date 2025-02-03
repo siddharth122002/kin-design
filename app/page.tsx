@@ -1,101 +1,161 @@
+"use client";
+import Hero from "@/components/Hero";
+import Menu from "@/components/Menu";
+import { useGSAP } from "@gsap/react";
+import gsap from "gsap";
 import Image from "next/image";
+import { useEffect, useRef, useState } from "react";
 
 export default function Home() {
-  return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+  const menuRef = useRef<HTMLDivElement | null>(null);
+  const [open, setOpen] = useState<boolean>(false);
+  const totalImages = 7;
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+  const images = [
+    "https://by-kin.com/_next/image?url=https%3A%2F%2Fcms.by-kin.com%2Fuploads%2F01_7f51214472.jpg&w=1920&q=100",
+    "https://by-kin.com/_next/image?url=https%3A%2F%2Fcms.by-kin.com%2Fuploads%2FAT_9_33aacb26d6.jpg&w=1920&q=100",
+    "https://by-kin.com/_next/image?url=https%3A%2F%2Fcms.by-kin.com%2Fuploads%2F1_95b3d86a0c.jpg&w=1920&q=100",
+    "https://by-kin.com/_next/image?url=https%3A%2F%2Fcms.by-kin.com%2Fuploads%2FDSC_7621_3_min_0e0ee18881.jpg&w=1920&q=100",
+    "https://by-kin.com/_next/image?url=https%3A%2F%2Fcms.by-kin.com%2Fuploads%2FMP_3_1303_min_aeac42f2a3.jpg&w=1920&q=100",
+    "https://by-kin.com/_next/image?url=https%3A%2F%2Fcms.by-kin.com%2Fuploads%2F30_fa739f68cf.jpg&w=1920&q=100",
+    "https://by-kin.com/_next/image?url=https%3A%2F%2Fcms.by-kin.com%2Fuploads%2FDentons_13_9dc4515e40.jpg&w=1920&q=100",
+  ];
+  useGSAP(
+    () => {
+      if (open) {
+        gsap.to(menuRef.current, {
+          x: "0%",
+          duration: 1,
+        });
+      } else {
+        gsap.to(menuRef.current, {
+          x: "100%",
+          duration: 1,
+        });
+      }
+    },
+    { dependencies: [open] }
+  );
+  useGSAP(
+    () => {
+      const tl = gsap.timeline();
+      tl.to(
+        ".opener1",
+        {
+          display: "none",
+          translateY: "-50%",
+          duration: 1,
+        },
+        "a"
+      );
+      tl.to(
+        ".opener2",
+        {
+          // display: "none",
+          translateY: "100%",
+          duration: 1,
+        },
+        "a"
+      );
+      tl.to(
+        ".stag6",
+        {
+          scale: 1,
+          duration: 1.3,
+        },
+        "a"
+      ).to(
+        ".stag6",
+        {
+          // opacity: 0,
+          display: "none",
+          delay: 0.9,
+          duration: 0.7,
+        },
+        "a"
+      );
+
+      tl.to(".stag5", {
+        scale: 1,
+        // opacity: 0,
+        display: "none",
+        duration: 0.36,
+      });
+      tl.to(".stag4", {
+        scale: 1,
+        // opacity: 0,
+        display: "none",
+        duration: 0.3,
+      });
+      tl.to(".stag3", {
+        scale: 1,
+        // opacity: 0,
+        display: "none",
+        duration: 0.29,
+      });
+      tl.to(".stag2", {
+        scale: 1,
+        // opacity: 0,
+        display: "none",
+        duration: 0.25,
+      });
+      tl.to(".stag1", {
+        scale: 1,
+        // opacity: 0,
+        display: "none",
+        duration: 0.23,
+      });
+      tl.to(".stag0", {
+        scale: 1,
+        // opacity: 0,
+        display: "none",
+        delay: 0.1,
+        duration: 0.4,
+      });
+      tl.to(".nn", {
+        display: "none",
+      });
+    },
+    { dependencies: [], revertOnUpdate: true }
+  );
+  return (
+    <>
+      <div className="bg-[#F4F2ED] transition-all duration-1000 w-full h-screen relative overflow-hidden">
+        {/* loader */}
+        <div className="absolute nn top-0 left-0 z-50 w-full h-full">
+          <div className="stag0  absolute top-0 left-0 scale-125 w-full h-full">
+            <Image src={images[0]} className=" object-cover" fill alt="test" />
+          </div>
+          <div className="stag1  absolute top-0 left-0 scale-125 w-full h-full">
+            <Image src={images[1]} className=" object-cover" fill alt="test" />
+          </div>
+          <div className="stag2  absolute top-0 left-0 scale-125 w-full h-full">
+            <Image src={images[2]} className=" object-cover" fill alt="test" />
+          </div>
+          <div className="stag3  absolute top-0 left-0 scale-125 w-full h-full">
+            <Image src={images[3]} className=" object-cover" fill alt="test" />
+          </div>
+          <div className="stag4  absolute top-0 left-0 scale-125 w-full h-full">
+            <Image src={images[4]} className=" object-cover" fill alt="test" />
+          </div>
+          <div className="stag5 absolute top-0 left-0 scale-125 w-full h-full">
+            <Image src={images[5]} className=" object-cover" fill alt="test" />
+          </div>
+          <div className="stag6 absolute top-0 left-0 scale-125 w-full h-full">
+            <Image src={images[6]} className=" object-cover" fill alt="test" />
+          </div>
+          <div className="opener1 absolute top-0 left-0 bg-[#F4F2ED] w-full h-full -translate-y-[50%]"></div>
+          <div className="opener2 absolute top-0 left-0 bg-[#F4F2ED] w-full h-full translate-y-[50%]"></div>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
+
+        <div
+          className="absolute translate-x-[100%] top-0 left-0 w-full z-10"
+          ref={menuRef}
         >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+          <Menu open={open} setOpen={setOpen} />
+        </div>
+        <Hero open={open} setOpen={setOpen} />
+      </div>
+    </>
   );
 }
